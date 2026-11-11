@@ -1,0 +1,92 @@
+/* ===== Language switch button =====
+   Same anatomy as the glass "icon + title + subtitle + arrow" button, repainted
+   in the site's browns / orange so it sits on the page instead of shouting. */
+.lang-btn{all:unset;box-sizing:border-box;position:fixed;right:18px;bottom:18px;z-index:90;
+  cursor:pointer;overflow:hidden;isolation:isolate;
+  padding:8px 14px 8px 8px;border-radius:16px;
+  border:2px solid rgba(240,106,28,.42);
+  background:linear-gradient(135deg,rgba(146,56,4,.9) 0%,rgba(88,35,2,.93) 48%,rgba(40,14,0,.96) 100%);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:0 14px 34px rgba(24,7,0,.55),inset 0 1px 0 rgba(255,214,170,.14);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease,border-color .5s ease}
+.lang-btn:hover{transform:translateY(-4px) scale(1.02);border-color:rgba(255,138,60,.7);
+  box-shadow:0 18px 40px rgba(24,7,0,.6),0 0 28px rgba(240,106,28,.38),inset 0 1px 0 rgba(255,214,170,.2)}
+.lang-btn:active{transform:scale(.95);transition-duration:.15s}
+.lang-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* light sweeping across on hover */
+.lang-btn__shine{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,170,100,.34),transparent);
+  transform:translateX(-100%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.lang-btn:hover .lang-btn__shine{transform:translateX(100%)}
+/* soft glow */
+.lang-btn__glow{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,rgba(240,106,28,.22),rgba(255,160,90,.1),rgba(240,106,28,.22));
+  transition:opacity .5s ease}
+.lang-btn:hover .lang-btn__glow{opacity:1}
+
+.lang-btn__body{position:relative;display:flex;align-items:center;gap:12px}
+.lang-btn__ico{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:11px;
+  background:linear-gradient(135deg,rgba(240,106,28,.62),rgba(255,150,70,.34));
+  box-shadow:inset 0 0 0 1px rgba(255,200,150,.25);
+  transition:background .3s ease}
+.lang-btn:hover .lang-btn__ico{background:linear-gradient(135deg,rgba(255,132,50,.78),rgba(240,106,28,.5))}
+.lang-btn__ico svg{width:22px;height:22px;color:#fff;filter:drop-shadow(0 2px 4px rgba(40,10,0,.5));
+  transition:transform .3s ease}
+.lang-btn:hover .lang-btn__ico svg{transform:scale(1.1)}
+.lang-btn__txt{display:flex;flex-direction:column;gap:2px;text-align:left;white-space:nowrap}
+.lang-btn__title{color:#fff;font-weight:700;font-size:15px;line-height:1.15;letter-spacing:.01em;
+  text-shadow:0 1px 2px rgba(40,10,0,.45)}
+.lang-btn__sub{color:rgba(255,226,198,.7);font-weight:500;font-size:11.5px;line-height:1.2;transition:color .3s ease}
+.lang-btn:hover .lang-btn__sub{color:rgba(255,236,216,.95)}
+.lang-btn__arrow{width:16px;height:16px;flex:none;color:#fff;opacity:.45;margin-left:2px;
+  transition:opacity .3s ease,transform .3s ease}
+.lang-btn:hover .lang-btn__arrow{opacity:1;transform:translateX(4px)}
+
+@media(max-width:819px){
+  .lang-btn{right:12px;bottom:12px;padding:6px 10px 6px 6px;border-radius:14px}
+  .lang-btn__ico{width:34px;height:34px;border-radius:10px}
+  .lang-btn__ico svg{width:19px;height:19px}
+  .lang-btn__sub{display:none}
+  .lang-btn__title{font-size:14px}
+  .lang-btn__body{gap:10px}
+}
+
+/* ===== Russian typography =====
+   Anton (the display face) has no Cyrillic, so the browser falls back to the next
+   family in the stack. We put Oswald Bold right after Anton: same condensed look,
+   and Latin text (AZUYA, brand names) keeps using Anton. */
+html[lang="ru"]{--display:Anton,Oswald,Impact,"Haettenschweiler","Arial Narrow Bold",sans-serif}
+html[lang="ru"] .tape-item,
+html[lang="ru"] .hero-hi,
+html[lang="ru"] .hero-role,
+html[lang="ru"] .pl-title,
+html[lang="ru"] .pl-ch h3,
+html[lang="ru"] .pl-wh,
+html[lang="ru"] .pl-cta{font-family:Anton,Oswald,Impact,"Haettenschweiler","Arial Narrow Bold",sans-serif;font-weight:700;font-synthesis:none}
+html[lang="ru"] .pl-title{font-weight:700}
+.fit-text text{font-synthesis:none}
+/* Russian words are longer: let the small headings breathe a bit */
+html[lang="ru"] .hero-copy{max-width:25cqw}
+html[lang="ru"] .cta,html[lang="ru"] .touch-title{letter-spacing:.02em}
+html[lang="ru"] .cta{font-size:3.2cqw}
+@media(max-width:819px){
+  html[lang="ru"] .hero-copy{max-width:78cqw}
+  html[lang="ru"] .cta{font-size:8.4cqw}
+}
+
+/* ===== My Tools slide, Russian version (desktop): clean plate + live pixel title ===== */
+.mt-ru{position:absolute;inset:0;z-index:1;pointer-events:none}
+.mt-ru svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible}
+.mt-ru .sh{fill:rgba(40,10,0,.55)}
+.mt-ru .my .fg{fill:#f6e2cb}
+.mt-ru .tl .fg{fill:#ff6c12}
+.mt-ru .tl{filter:drop-shadow(0 0 1.1cqw rgba(255,90,0,.45))}
+.mt-ru-bar{position:absolute;left:6.58cqw;top:37.56cqw;width:.96cqw;height:7.2cqw;background:#ff6c12;display:block}
+.mt-ru-sub{position:absolute;left:9.75cqw;top:37.7cqw;margin:0;color:#f4dcc4;white-space:nowrap;
+  font:500 2.02cqw/2.27cqw ui-monospace,"SF Mono",Menlo,Consolas,"Courier New",monospace;letter-spacing:.06em}
+
+.lang-btn{transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease,border-color .5s ease,opacity .35s ease}
+.az-at-end .lang-btn{opacity:0;pointer-events:none;transform:translateY(16px)}
